@@ -1,0 +1,56 @@
+@import "src/Styles/variables.sass"
+
+.vacancy-page-wrapper
+	width: 100%
+	display: flex
+	flex-direction: column
+	background: #fff
+	border-radius: 10px
+	padding: 20px
+	gap: 50px
+
+	.vacancy-cities-wrapper
+		width: 100%
+		display: flex
+		flex-direction: column
+		gap: 20px
+
+		.top
+			h3
+				font-size: 24px
+				text-align: center
+
+		.vacancy-info-container
+			width: 100%
+			display: flex
+			flex-direction: column
+			padding: 0 50px
+
+			span
+				font-size: 24px
+
+		.inputs-container
+			width: 100%
+			padding: 0 50px
+
+			input
+				width: 300px
+
+		.bottom
+			width: 100%
+			display: grid
+			grid-template-columns: repeat(auto-fit, minmax(300px, 0.25fr))
+			grid-column-gap: 25px
+			grid-row-gap: 25px
+			justify-content: center
+
+	.buttons-wrapper
+		display: flex
+		gap: 20px
+		width: 100%
+		justify-content: center
+
+		button
+			padding: 8px 16px
+			font-size: 28px
+
