@@ -50,17 +50,20 @@ const VacanciesTable = () => {
             Cell: ({ value }) => { return moment(value).locale(ru()).format("D MMMM HH:mm") }
         },
         {
-            Header: "Банкрот",
-            accessor: "bankrupt",
+            Header: "Отчет",
+            accessor: "report_url", 
             Cell: ({ value }) => {
-                if (value == 0) {
-                    return "Нет"
+                if (value) {
+                    // Если есть отчет, создаем кнопку для скачивания
+                    return (
+                        <a href={value} target="_blank" rel="noopener noreferrer" className="download-report-button">
+                            Скачать
+                        </a>
+                    );
                 }
-                else if (value == 1) {
-                    return "Да"
-                }
-
-                return "Не найден"
+        
+                // Если отчета нет
+                return <span className="no-report">Нет отчета</span>;
             }
         }
     ]
@@ -70,7 +73,7 @@ const VacanciesTable = () => {
             Header: "Действие",
             accessor: "accept_button",
             Cell: ({ cell }) => (
-                is_moderator && cell.row.values.status == 2 && <CustomButton bg={variables.green} onClick={(e) => acceptVacancy(cell.row.values.id)}>Принять</CustomButton>
+                is_moderator && cell.row.values.status == 2 && <CustomButton bg={variables.green} onClick={(e) => acceptVacancy(cell.row.values.id)}>Отправить</CustomButton>
             )
         })
 

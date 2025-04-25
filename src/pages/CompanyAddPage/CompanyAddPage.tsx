@@ -80,7 +80,6 @@ const CompanyAddPage = () => {
         }
     }
 
-    const img = `http://127.0.0.1:8000/api/companies/${id}/image/`
 
     return (
         <div className="add-page-wrapper">
