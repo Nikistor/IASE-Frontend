@@ -3,21 +3,21 @@ import "./styles/Reset.sass"
 import Header from "./components/Header/Header";
 import Breadcrumbs from "./components/Breadcrumbs/Breadcrumbs";
 import {BrowserRouter, Route, Routes, Navigate, useLocation} from 'react-router-dom';
-import CityPage from "./pages/CityPage/CityPage";
+import CompanyPage from "./pages/CompanyPage/CompanyPage";
 import ProfilePage from "./pages/ProfilePage/ProfilePage";
 import {QueryClient, QueryClientProvider } from "react-query";
 import {Provider} from "react-redux"
 import store from "./store/store"
-import CitiesPage from "./pages/CitiesPage/CitiesPage";
+import CompaniesPage from "./pages/CompaniesPage/CompaniesPage";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import RegisterPage from "./pages/RegisterPage/RegisterPage";
 import {useAuth} from "./hooks/users/useAuth";
 import VacancyConstructor from "./components/VacancyConstructor/VacancyConstructor";
 import VacancyPage from "./pages/VacancyPage/VacancyPage";
 import VacanciesPage from "./pages/VacanciesPage/VacanciesPage";
-import CityEditPage from "./pages/CityEditPage/CityEditPage";
-import CityAddPage from "./pages/CityAddPage/CityAddPage";
-import CitiesTableWrapper from "./pages/CitiesPage/CitiesTableWrapper/CitiesTableWrapper";
+import CompanyEditPage from "./pages/CompanyEditPage/CompanyEditPage";
+import CompanyAddPage from "./pages/CompanyAddPage/CompanyAddPage";
+import CompaniesTableWrapper from "./pages/CompaniesPage/CompaniesTableWrapper/CompaniesTableWrapper";
 
 
 const TopPanelWrapper = () => {
@@ -29,7 +29,7 @@ const TopPanelWrapper = () => {
     return (
         <div className="top-panel-wrapper">
             <Breadcrumbs />
-            {is_authenticated && location.pathname.endsWith("cities") && <VacancyConstructor /> }
+            {is_authenticated && location.pathname.endsWith("companies") && <VacancyConstructor /> }
         </div>
     )
 }
@@ -58,17 +58,17 @@ function App() {
 
                                 <Routes>
 
-                                    <Route path="/" element={<Navigate to="/cities" replace />} />
+                                    <Route path="/" element={<Navigate to="/companies" replace />} />
 
                                     <Route path="/profile" element={<ProfilePage />} />
 
-                                    <Route path="/cities" element={<CitiesPage />} />
+                                    <Route path="/companies" element={<CompaniesPage />} />
 
-                                    <Route path="/cities/:id" element={<CityPage />} />
+                                    <Route path="/companies/:id" element={<CompanyPage />} />
 
-                                    <Route path="/cities/:id/edit" element={<CityEditPage />} />
+                                    <Route path="/companies/:id/edit" element={<CompanyEditPage />} />
 
-                                    <Route path="/cities/create" element={<CityAddPage />} />
+                                    <Route path="/companies/create" element={<CompanyAddPage />} />
 
                                     <Route path="/profile" element={<ProfilePage />} />
 
@@ -80,7 +80,7 @@ function App() {
 
                                     <Route path="/register" element={<RegisterPage />} />
 
-                                    <Route path="/cities_table" element={<CitiesTableWrapper />} />
+                                    <Route path="/companies_table" element={<CompaniesTableWrapper />} />
 
                                 </Routes>
 

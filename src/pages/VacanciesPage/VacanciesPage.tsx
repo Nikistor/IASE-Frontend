@@ -11,7 +11,7 @@ const VacanciesPage = () => {
 
     useEffect(() => {
         if (!is_authenticated) {
-            navigate("/cities")
+            navigate("/companies")
         }
     }, [])
 

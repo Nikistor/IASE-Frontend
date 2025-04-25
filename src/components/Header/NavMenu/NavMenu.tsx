@@ -18,11 +18,11 @@ const NavMenu = () => {
         <div>
             <div className={"menu-wrapper " + (isOpen ? "open" : "")}>
                 {is_moderator &&
-                <Link to="/cities_table" className="menu-item" onClick={(e) => {setIsOpen(false)}} >
+                <Link to="/companies_table" className="menu-item" onClick={(e) => {setIsOpen(false)}} >
                     <span>Таблица городов</span>
                 </Link>
                 }
-                <Link to="/cities" className="menu-item" onClick={(e) => {setIsOpen(false)}} >
+                <Link to="/companies" className="menu-item" onClick={(e) => {setIsOpen(false)}} >
                     <span>Города</span>
                 </Link>
 

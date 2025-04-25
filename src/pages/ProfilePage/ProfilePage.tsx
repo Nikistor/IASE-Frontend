@@ -14,7 +14,7 @@ const ProfilePage = () => {
 
 		await logOut()
 
-		navigate("/cities")
+		navigate("/companies")
 	}
 
 	return (

@@ -2,23 +2,23 @@ import "./Breadcrumbs.sass"
 import { Link, useLocation } from "react-router-dom";
 import {FaChevronRight} from "react-icons/fa6";
 import {FaHome} from "react-icons/fa";
-import {useCity} from "../../hooks/cities/useCity";
+import {useCompany} from "../../hooks/companies/useCompany";
 import {useVacancy} from "../../hooks/vacancies/useVacancy";
 
 const Breadcrumbs = () => {
 
     const location = useLocation()
 
-    const {city, setCity} = useCity()
+    const {company, setCompany} = useCompany()
 
     const { vacancy } = useVacancy()
 
     let currentLink = ''
 
-    const resetSelectedCity = () => setCity(undefined)
+    const resetSelectedCompany = () => setCompany(undefined)
 
     const topics = {
-        "cities": "Города",
+        "companies": "Города",
         "vacancies": "Вакансии",
         "home": "Главная",
         "login": "Вход",
@@ -40,7 +40,7 @@ const Breadcrumbs = () => {
             return (
                 <div className={"crumb"} key={crumb}>
 
-                    <Link to={currentLink} onClick={resetSelectedCity}>
+                    <Link to={currentLink} onClick={resetSelectedCompany}>
                         { topics[crumb] }
                     </Link>
 
@@ -80,13 +80,13 @@ const Breadcrumbs = () => {
             )
         }
 
-        if (currentLink.match(new RegExp('cities/(\d*)')))
+        if (currentLink.match(new RegExp('companies/(\d*)')))
         {
             return (
                 <div className={"crumb"} key={crumb}>
 
                     <Link to={currentLink}>
-                        {city?.name}
+                        {company?.name}
                     </Link>
 
                     <FaChevronRight className={"chevron-icon"}/>
@@ -102,7 +102,7 @@ const Breadcrumbs = () => {
 
                 <div className="crumb">
 
-                    <Link to={"/cities"}>
+                    <Link to={"/companies"}>
                         <FaHome className="home-icon" />
                     </Link>
 

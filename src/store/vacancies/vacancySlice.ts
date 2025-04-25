@@ -13,8 +13,8 @@ const vacancySlice = createSlice({
 		updateVacancy(state, action) {
 			state.vacancy = action.payload
 		},
-		updateCities(state, action){
-			state.vacancy.cities = action.payload
+		updateCompanies(state, action){
+			state.vacancy.companies = action.payload
 		},
 		updateVacancyName(state, action){
 			state.name = action.payload
@@ -25,6 +25,6 @@ const vacancySlice = createSlice({
 	}
 })
 
-export const {updateVacancy, updateCities, updateVacancyName, updateVacancyId} = vacancySlice.actions;
+export const {updateVacancy, updateCompanies, updateVacancyName, updateVacancyId} = vacancySlice.actions;
 
 export default vacancySlice.reducer;

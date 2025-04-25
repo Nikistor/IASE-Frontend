@@ -1,7 +1,7 @@
 import {useEffect} from "react";
 import {useVacancy} from "../../hooks/vacancies/useVacancy";
 import {useNavigate, useParams} from "react-router-dom"
-import CityCard from "../../components/CityCard/CityCard";
+import CompanyCard from "../../components/CompanyCard/CompanyCard";
 import "./VacancyPage.sass"
 import {useAuth} from "../../hooks/users/useAuth";
 import {STATUSES, variables} from "../../utils/consts";
@@ -45,11 +45,11 @@ const VacancyPage = () => {
 
     const onDeleteVacancy = async () => {
         await deleteVacancy()
-        navigate("/cities")
+        navigate("/companies")
     }
 
-    const cards = vacancy.cities.map(city  => (
-        <CityCard city={city} key={city.id} />
+    const cards = vacancy.companies.map(company  => (
+        <CompanyCard company={company} key={company.id} />
     ))
 
 
@@ -85,7 +85,7 @@ const VacancyPage = () => {
     return (
         <div className="vacancy-page-wrapper">
 
-            <div className="vacancy-cities-wrapper">
+            <div className="vacancy-companies-wrapper">
                 <div className="top">
                     <h3>{is_draft ? "Новая вакансия" : vacancy.name}</h3>
                 </div>

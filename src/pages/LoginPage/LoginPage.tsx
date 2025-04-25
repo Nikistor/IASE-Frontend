@@ -19,7 +19,7 @@ const LoginPage = () => {
 
         if (flag) {
 
-            navigate("/cities")
+            navigate("/companies")
 
         }
     }
@@ -27,7 +27,7 @@ const LoginPage = () => {
     const handleAuth = async () => {
         const flag = await auth()
         if (flag) {
-            navigate("/cities")
+            navigate("/companies")
         }
     }
 

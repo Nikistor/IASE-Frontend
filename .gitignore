@@ -1,2 +1,57 @@
-.idea
-node_modules
+# === IDE и редакторы ===
+# JetBrains IDE (например, WebStorm, IntelliJ IDEA)
+.idea/
+*.iml
+
+# Visual Studio Code
+.vscode/
+*.code-workspace
+
+# === Сборка и зависимости ===
+# Node.js
+node_modules/
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Сгенерированные файлы
+dist/
+build/
+coverage/
+
+# === Локальные файлы ===
+# Локальные переменные окружения
+.env
+.env.local
+.env.development
+.env.production
+
+# Логи и временные файлы
+*.log
+*.tmp
+*.temp
+
+# === Операционная система ===
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Linux
+*~
+
+# === Документация и артефакты ===
+# Временные файлы документов
+*.docx
+*.pdf
+*.mdj
+
+# === Прочее ===
+# Файлы, созданные браузерами или другими инструментами
+*.swp
+*.swo

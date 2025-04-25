@@ -1,7 +1,7 @@
 import {useDispatch, useSelector} from 'react-redux';
 import {
 	updateVacancy,
-	updateCities,
+	updateCompanies,
 	updateVacancyName, updateVacancyId
 } from "../../store/vacancies/vacancySlice";
 import {useToken} from "../users/useToken";
@@ -29,8 +29,8 @@ export function useVacancy() {
 		dispatch(updateVacancyId(value))
 	}
 
-	const setCities = (value) => {
-		dispatch(updateCities(value))
+	const setCompanies = (value) => {
+		dispatch(updateCompanies(value))
 	}
 
 	const setName = (value) => {
@@ -94,16 +94,16 @@ export function useVacancy() {
 		setName(data["name"])
 	}
 
-	const addCityToVacancy = async (city) => {
-		await api.post(`cities/${city.id}/add_to_vacancy/`, {}, {
+	const addCompanyToVacancy = async (company) => {
+		await api.post(`companies/${company.id}/add_to_vacancy/`, {}, {
 			headers: {
 				'authorization': access_token
 			}
 		})
 	}
 
-	const deleteCityFromVacancy = async (city) => {
-		await api.delete(`vacancies/${vacancy.id}/delete_city/${city.id}/`, {
+	const deleteCompanyFromVacancy = async (company) => {
+		await api.delete(`vacancies/${vacancy.id}/delete_company/${company.id}/`, {
 			headers: {
 				'authorization': access_token
 			}
@@ -117,13 +117,13 @@ export function useVacancy() {
 		is_draft,
 		setVacancy,
 		setVacancyId,
-		setCities,
+		setCompanies,
 		setName,
 		saveVacancy,
 		sendVacancy,
 		deleteVacancy,
 		fetchVacancy,
-		addCityToVacancy,
-		deleteCityFromVacancy
+		addCompanyToVacancy,
+		deleteCompanyFromVacancy
 	};
 }

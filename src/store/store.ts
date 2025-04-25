@@ -1,15 +1,15 @@
 import {configureStore} from "@reduxjs/toolkit";
 
-import cityReducer from "./cities/citySlice"
+import companyReducer from "./companies/companySlice"
 import draftVacancyReducer from "./vacancies/vacancySlice"
 import authReducer from "./users/authSlice"
 import vacanciesReducer from "./vacancies/vacanciesSlice"
-import citiesReducer  from "./cities/citiesSlice"
+import companiesReducer  from "./companies/companiesSlice"
 
 export default configureStore({
 	reducer: {
-		city: cityReducer,
-		cities: citiesReducer,
+		company: companyReducer,
+		companies: companiesReducer,
 		vacancy: draftVacancyReducer,
 		vacancies: vacanciesReducer,
 		user: authReducer

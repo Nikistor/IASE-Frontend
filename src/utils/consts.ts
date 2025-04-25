@@ -1,4 +1,4 @@
-import {Option} from "./Types";
+import {Option} from "./types";
 
 export const STATUSES = [
     {
