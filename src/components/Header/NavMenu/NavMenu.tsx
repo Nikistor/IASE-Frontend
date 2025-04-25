@@ -24,7 +24,7 @@ const NavMenu = () => {
                             <span>Анализ данных</span>
                         </a>
 
-                        <Link to="/cities_table" className="menu-item" onClick={(e) => { setIsOpen(false) }} >
+                        <Link to="/companies_table" className="menu-item" onClick={(e) => { setIsOpen(false) }} >
                             <span>Таблица компании</span>
                         </Link>
                     </>
