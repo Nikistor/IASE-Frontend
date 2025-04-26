@@ -22,12 +22,12 @@ const CompaniesFilters = ({refetch}) => {
     return (
         <div className="companies-filters">
 
-            <h2>Поиск городов</h2>
+            <h2>Поиск компании</h2>
 
             <div className="right-container">
                 {is_moderator && (location.pathname === '/companies_table')&&
                     <LinkButton to="/companies/create" bg={variables.primary}>
-                        Добавить город
+                        Добавить компанию
                     </LinkButton>
                 }
 

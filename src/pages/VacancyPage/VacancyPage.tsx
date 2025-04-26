@@ -118,7 +118,7 @@ const VacancyPage = () => {
 
             <div className="vacancy-companies-wrapper">
                 <div className="top">
-                    <h3>{is_draft ? "Новая вакансия" : vacancy.name}</h3>
+                    <h3>{is_draft ? "Новая заявка" : vacancy.name}</h3>
                 </div>
 
                 <div className="vacancy-info-container">
@@ -133,7 +133,7 @@ const VacancyPage = () => {
                 {is_draft &&
                     <div className="inputs-container">
 
-                        <CustomInput placeholder={"Название вакансии"} value={name} setValue={setName} />
+                        <CustomInput placeholder={"Название заявки"} value={name} setValue={setName} />
 
                     </div>
                 }

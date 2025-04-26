@@ -18,8 +18,8 @@ const Breadcrumbs = () => {
     const resetSelectedCompany = () => setCompany(undefined)
 
     const topics = {
-        "companies": "Города",
-        "vacancies": "Вакансии",
+        "companies": "Компании",
+        "vacancies": "Заявки",
         "home": "Главная",
         "login": "Вход",
         "register": "Регистрация",

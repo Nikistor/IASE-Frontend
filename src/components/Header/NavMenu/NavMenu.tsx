@@ -30,12 +30,12 @@ const NavMenu = () => {
                     </>
                 }
                 <Link to="/companies" className="menu-item" onClick={(e) => { setIsOpen(false) }} >
-                    <span>Города</span>
+                    <span>Компании</span>
                 </Link>
 
                 {is_authenticated &&
                     <Link to="/vacancies" className="menu-item" onClick={(e) => { setIsOpen(false) }} >
-                        <span>Вакансии</span>
+                        <span>Заявки</span>
                     </Link>
                 }
 

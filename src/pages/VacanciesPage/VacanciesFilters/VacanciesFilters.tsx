@@ -23,7 +23,7 @@ const VacanciesFilters = ({refetch}) => {
 
             <div className="top-container">
 
-                <h3>Список вакансий</h3>
+                <h3>Список заявок</h3>
 
             </div>
 
