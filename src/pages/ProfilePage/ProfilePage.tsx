@@ -25,7 +25,7 @@ const ProfilePage = () => {
 			<div className="user-info-wrapper">
 				<span>Имя: {user_name}</span>
 				<span>Логин: {user_email}</span>
-				<span>Статус: {is_moderator ? "Модератор" : "Пользователь"}</span>
+				<span>Статус: {is_moderator ? "Аналитик" : "Пользователь"}</span>
 
 				<CustomButton onClick={doLogOut}>Выйти</CustomButton>
 

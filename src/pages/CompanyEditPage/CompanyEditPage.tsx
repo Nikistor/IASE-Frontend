@@ -19,11 +19,20 @@ const CompanyEditPage = () => {
         company,
         fetchCompany,
         setName,
-        setDescription,
-        setFoundationDate,
-        setGRP,
-        setClimate,
-        setSquare,
+		setTicker,
+		setIndustry,
+		setCapital,
+		setEnterpriseValue,
+		setRevenue,
+		setNetProfit,
+		setPE,
+		setPS,
+		setPB,
+		setEvEbitda,
+		setEbitdaMargin,
+		setDebtEbitda,
+		setReport,
+		setYear,
     } = useCompany();
 
     const [imgFile, setImgFile] = useState<File | undefined>(undefined);
@@ -49,11 +58,20 @@ const CompanyEditPage = () => {
         let form_data = new FormData();
 
         form_data.append("name", company.name);
-        form_data.append("description", company.description);
-        form_data.append("foundation_date", company.foundation_date);
-        form_data.append("grp", company.grp);
-        form_data.append("climate", company.climate);
-        form_data.append("square", company.square);
+        form_data.append('ticker', company.ticker);
+        form_data.append('industry', company.industry);
+        form_data.append('capital', company.capital);
+        form_data.append('enterprise_value', company.enterprise_value);
+        form_data.append('revenue', company.revenue);
+        form_data.append('net_profit', company.net_profit);
+        form_data.append('pe', company.pe);
+        form_data.append('ps', company.ps);
+        form_data.append('pb', company.pb);
+        form_data.append('ev_ebitda', company.ev_ebitda);
+        form_data.append('ebitda_margin', company.ebitda_margin);
+        form_data.append('debt_ebitda', company.debt_ebitda);
+        form_data.append('report', company.report);
+        form_data.append('year', company.year);
 
         if (imgFile) {
             form_data.append("image", imgFile, imgFile.name);
@@ -118,19 +136,34 @@ const CompanyEditPage = () => {
             <div className="right">
                 <div className="info-container">
                     <CustomInput placeholder="Название" value={company.name} setValue={setName} />
-                    <CustomTextarea
-                        placeholder="Описание"
-                        value={company.description}
-                        setValue={setDescription}
-                    />
-                    <CustomInput
-                        placeholder="Дата основания (г.)"
-                        value={company.foundation_date}
-                        setValue={setFoundationDate}
-                    />
-                    <CustomInput placeholder="Население (млн)" value={company.grp} setValue={setGRP} />
-                    <CustomInput placeholder="Площадь (км^2)" value={company.square} setValue={setSquare} />
-                    <CustomInput placeholder="Климат" value={company.climate} setValue={setClimate} />
+
+                    <CustomInput placeholder="Тикер" value={company.ticker} setValue={setTicker} />
+
+                    <CustomInput placeholder="Отрасль" value={company.industry} setValue={setIndustry} />
+
+                    <CustomInput placeholder="Капитализация (млрд руб)" value={company.capital} setValue={setCapital} />
+
+                    <CustomInput placeholder="Стоимость компании (млрд руб)" value={company.enterprise_value} setValue={setEnterpriseValue} />
+
+                    <CustomInput placeholder="Выручка (млрд руб)" value={company.revenue} setValue={setRevenue} />
+
+                    <CustomInput placeholder="Чистая прибыль (млрд руб)" value={company.net_profit} setValue={setNetProfit} />
+
+                    <CustomInput placeholder="P/E" value={company.pe} setValue={setPE} />
+
+                    <CustomInput placeholder="P/S" value={company.ps} setValue={setPS} />
+
+                    <CustomInput placeholder="P/B" value={company.pb} setValue={setPB} />
+
+                    <CustomInput placeholder="EV/EBITDA" value={company.ev_ebitda} setValue={setEvEbitda} />
+
+                    <CustomInput placeholder="Рентабельность, EBITDA" value={company.ebitda_margin} setValue={setEbitdaMargin} />
+
+                    <CustomInput placeholder="долг/EBITDA" value={company.debt_ebitda} setValue={setDebtEbitda} />
+
+                    <CustomInput placeholder="Отчетность" value={company.report} setValue={setReport} />
+
+                    <CustomInput placeholder="Год отчетности" value={company.year} setValue={setYear} />
 
                     <div className="buttons-container">
                         <CustomButton bg={variables.green} onClick={saveCompany}>

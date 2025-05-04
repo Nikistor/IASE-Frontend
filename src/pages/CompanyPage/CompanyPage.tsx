@@ -44,23 +44,59 @@ const CompanyPage = () => {
 
                     <br />
 
-                    <span className="description">{company.description}</span>
+                    <span className="ticker">Тикер: {company.ticker}</span>
 
                     <br />
 
-                    <span className="foundation_date">Год основания: {company.foundation_date} г.</span>
+                    <span className="industry">Отрасль: {company.industry}</span>
 
                     <br />
 
-                    <span className="grp">Население: {company.grp} млн</span>
+                    <span className="capital">Капитализация: {company.capital} млрд руб</span>
 
                     <br />
 
-                    <span className="square">Площадь: {company.square} км^2</span>
+                    <span className="enterprise_value">Стоимость компании: {company.enterprise_value} млрд руб</span>
 
                     <br />
 
-                    <span className="climate">Климат: {company.climate}</span>
+                    <span className="revenue">Выручка: {company.revenue} млрд руб</span>
+
+                    <br />
+
+                    <span className="net_profit">Чистая прибыль: {company.net_profit} млрд руб</span>
+
+                    <br />
+
+                    <span className="pe">P/E: {company.pe}</span>
+
+                    <br />
+
+                    <span className="ps">P/S: {company.ps}</span>
+
+                    <br />
+
+                    <span className="pb">P/B: {company.pb}</span>
+
+                    <br />
+
+                    <span className="ev_ebitda">EV/EBITDA: {company.ev_ebitda}</span>
+
+                    <br />
+
+                    <span className="ebitda_margin">Рентабельность, EBITDA: {company.ebitda_margin}</span>
+
+                    <br />
+
+                    <span className="debt_ebitda">долг/EBITDA: {company.debt_ebitda}</span>
+
+                    <br />
+
+                    <span className="report">Отчетность: {company.report}</span>
+
+                    <br />
+
+                    <span className="year">Год отчетности: {company.year} г.</span>
 
                 </div>
 

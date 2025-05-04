@@ -38,7 +38,7 @@ const CompanyCard = ({ company }: {company:Company}) => {
 
                 <div className="content-top">
 
-                    <h3 className="title"> {`${company.name} отчетность до ${company.foundation_date}`} </h3>
+                    <h3 className="title"> {`${company.name} ${company.year}`} </h3>
 
                 </div>
 

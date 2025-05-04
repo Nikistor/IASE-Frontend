@@ -2,11 +2,20 @@ import {useDispatch, useSelector} from 'react-redux';
 import {
 	updateCompany,
 	updateName,
-	updateDescription,
-	updateFoundationDate,
-	updateGRP,
-	updateClimate,
-	updateSquare,
+	updateTicker,
+	updateIndustry,
+	updateCapital,
+	updateEnterpriseValue,
+	updateRevenue,
+	updateNetProfit,
+	updatePE,
+	updatePS,
+	updatePB,
+	updateEvEbitda,
+	updateEbitdaMargin,
+	updateDebtEbitda,
+	updateReport,
+	updateYear,
 	updateImage
 } from "../../store/companies/companySlice";
 import {api} from "../../utils/api";
@@ -21,31 +30,67 @@ export function useCompany() {
 		dispatch(updateCompany(value))
 	}
 
-	const setName = (value: any) => {
+	const setName = (value) => {
 		dispatch(updateName(value))
 	}
 
-	const setDescription = (value: any) => {
-		dispatch(updateDescription(value))
+	const setTicker = (value) => {
+		dispatch(updateTicker(value))
 	}
 
-	const setFoundationDate = (value: any) => {
-		dispatch(updateFoundationDate(value))
+	const setIndustry = (value) => {
+		dispatch(updateIndustry(value))
 	}
 
-	const setGRP = (value: any) => {
-		dispatch(updateGRP(value))
+	const setCapital = (value) => {
+		dispatch(updateCapital(value))
 	}
 
-	const setClimate = (value: any) => {
-		dispatch(updateClimate(value))
+	const setEnterpriseValue = (value) => {
+		dispatch(updateEnterpriseValue(value))
 	}
 
-	const setSquare = (value: any) => {
-		dispatch(updateSquare(value))
+	const setRevenue = (value) => {
+		dispatch(updateRevenue(value))
 	}
 
-	const setImage = (value: any) => {
+	const setNetProfit = (value) => {
+		dispatch(updateNetProfit(value))
+	}
+
+	const setPE = (value) => {
+		dispatch(updatePE(value))
+	}
+
+	const setPS = (value) => {
+		dispatch(updatePS(value))
+	}
+
+	const setPB = (value) => {
+		dispatch(updatePB(value))
+	}
+
+	const setEvEbitda = (value) => {
+		dispatch(updateEvEbitda(value))
+	}
+
+	const setEbitdaMargin = (value) => {
+		dispatch(updateEbitdaMargin(value))
+	}
+
+	const setDebtEbitda = (value) => {
+		dispatch(updateDebtEbitda(value))
+	}
+
+	const setReport = (value) => {
+		dispatch(updateReport(value))
+	}
+
+	const setYear = (value) => {
+		dispatch(updateYear(value))
+	}
+
+	const setImage = (value) => {
 		dispatch(updateImage(value))
 	}
 
@@ -62,11 +107,20 @@ export function useCompany() {
 		image,
 		setCompany,
 		setName,
-		setDescription,
-		setFoundationDate,
-		setGRP,
-		setClimate,
-		setSquare,
+		setTicker,
+		setIndustry,
+		setCapital,
+		setEnterpriseValue,
+		setRevenue,
+		setNetProfit,
+		setPE,
+		setPS,
+		setPB,
+		setEvEbitda,
+		setEbitdaMargin,
+		setDebtEbitda,
+		setReport,
+		setYear,
 		setImage,
 		fetchCompany,
 	};

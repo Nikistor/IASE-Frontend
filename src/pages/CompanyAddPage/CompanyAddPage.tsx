@@ -16,12 +16,21 @@ const CompanyAddPage = () => {
 
     const navigate = useNavigate()
 
-    const [name, setName] = useState("asd")
-    const [description, setDescription] = useState("asdf")
-    const [foundationDate, setFoundationDate] = useState("23")
-    const [grp, setGRP] = useState("23")
-    const [climate, setClimate] = useState("asdf")
-    const [square, setSquare] = useState("23")
+    const [name, setName] = useState("text")
+    const [ticker, setTicker] = useState("text")
+    const [industry, setIndustry] = useState("text")
+    const [capital, setCapital] = useState("123")
+    const [enterprise_value, setEnterpriseValue] = useState("123")
+    const [revenue, setRevenue] = useState("123")
+    const [net_profit, setNetProfit] = useState("123")
+    const [pe, setPE] = useState("123")
+    const [ps, setPS] = useState("123")
+    const [pb, setPB] = useState("123")
+    const [ev_ebitda, setEvEbitda] = useState("123")
+    const [ebitda_margin, setEbitdaMargin] = useState("123")
+    const [debt_ebitda, setDebtEbitda] = useState("123")
+    const [report, setReport] = useState("text")
+    const [year, setYear] = useState("123")
 
     const [imgFile, setImgFile] = useState<File | undefined>()
     const [imgURL, setImgURL] = useState<string | undefined>(mock)
@@ -54,11 +63,20 @@ const CompanyAddPage = () => {
         const form_data = new FormData()
 
         form_data.append('name', name)
-        form_data.append('description', description)
-        form_data.append('foundation_date', foundationDate)
-        form_data.append('grp', grp)
-        form_data.append('climate', climate)
-        form_data.append('square', square)
+        form_data.append('ticker', ticker)
+        form_data.append('industry', industry)
+        form_data.append('capital', capital)
+        form_data.append('enterprise_value', enterprise_value)
+        form_data.append('revenue', revenue)
+        form_data.append('net_profit', net_profit)
+        form_data.append('pe', pe)
+        form_data.append('ps', ps)
+        form_data.append('pb', pb)
+        form_data.append('ev_ebitda', ev_ebitda)
+        form_data.append('ebitda_margin', ebitda_margin)
+        form_data.append('debt_ebitda', debt_ebitda)
+        form_data.append('report', report)
+        form_data.append('year', year)
 
         if (imgFile != undefined) {
             form_data.append('image', imgFile, imgFile.name)
@@ -97,15 +115,33 @@ const CompanyAddPage = () => {
 
                     <CustomInput placeholder="Название" value={name} setValue={setName} />
 
-                    <CustomTextarea placeholder="Описание" value={description} setValue={setDescription} />
+                    <CustomInput placeholder="Тикер" value={ticker} setValue={setTicker} />
 
-                    <CustomInput placeholder="Дата основания (г.)" value={foundationDate} setValue={setFoundationDate} />
+                    <CustomInput placeholder="Отрасль" value={industry} setValue={setIndustry} />
 
-                    <CustomInput placeholder="Население (млн)" value={grp} setValue={setGRP} />
+                    <CustomInput placeholder="Капитализация (млрд руб)" value={capital} setValue={setCapital} />
 
-                    <CustomInput placeholder="Площадь (км^2)" value={square} setValue={setSquare} />
+                    <CustomInput placeholder="Стоимость компании (млрд руб)" value={enterprise_value} setValue={setEnterpriseValue} />
 
-                    <CustomInput placeholder="Климат" value={climate} setValue={setClimate} />
+                    <CustomInput placeholder="Выручка (млрд руб)" value={revenue} setValue={setRevenue} />
+
+                    <CustomInput placeholder="Чистая прибыль (млрд руб)" value={net_profit} setValue={setNetProfit} />
+
+                    <CustomInput placeholder="P/E" value={pe} setValue={setPE} />
+
+                    <CustomInput placeholder="P/S" value={ps} setValue={setPS} />
+
+                    <CustomInput placeholder="P/B" value={pb} setValue={setPB} />
+
+                    <CustomInput placeholder="EV/EBITDA" value={ev_ebitda} setValue={setEvEbitda} />
+
+                    <CustomInput placeholder="Рентабельность, EBITDA" value={ebitda_margin} setValue={setEbitdaMargin} />
+
+                    <CustomInput placeholder="долг/EBITDA" value={debt_ebitda} setValue={setDebtEbitda} />
+
+                    <CustomInput placeholder="Отчетность" value={report} setValue={setReport} />
+
+                    <CustomInput placeholder="Год отчетности" value={year} setValue={setYear} />
 
                     <div className="buttons-container">
 
