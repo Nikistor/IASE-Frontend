@@ -25,7 +25,15 @@ const ReportDownloadButton = ({ row }) => {
         }
     };
 
-    if (status !== 3 && report) {
+    if (status === 1 || !report) {
+        return <span className="no-report">Нет отчета</span>;
+    }
+
+    if (status === 2 || !report) {
+        return <span className="no-report">Нет отчета</span>;
+    }
+
+    if (status === 3 && report) {
         return (
             <div>
                 <button
@@ -41,6 +49,10 @@ const ReportDownloadButton = ({ row }) => {
     }
 
     if (status === 3 || !report) {
+        return <span className="no-report">Нет отчета</span>;
+    }
+
+    if (status === 4 || !report) {
         return <span className="no-report">Нет отчета</span>;
     }
 };
