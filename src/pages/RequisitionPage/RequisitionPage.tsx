@@ -130,7 +130,7 @@ const RequisitionPage = () => {
                     {[2, 3, 4].includes(requisition.status) && <span>Дата формирования: {moment(requisition.date_formation).locale(ru()).format("D MMMM HH:mm")}</span>}
                     {completed && <span>Дата завершения: {moment(requisition.date_complete).locale(ru()).format("D MMMM HH:mm")}</span>}
                     {is_moderator && <span>Пользователь: {requisition.employer.name}</span>}
-                    {completed && <span>Банкрот: {bankrupt()}</span>}
+                    {/*completed && <span>Банкрот: {bankrupt()}</span>*/}
                 </div>
 
                 {is_draft &&
