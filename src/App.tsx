@@ -1,5 +1,5 @@
-import "./styles/Main.sass"
-import "./styles/Reset.sass"
+import "./styles/main.sass"
+import "./styles/reset.sass"
 import Header from "./components/Header/Header";
 import Breadcrumbs from "./components/Breadcrumbs/Breadcrumbs";
 import {BrowserRouter, Route, Routes, Navigate, useLocation} from 'react-router-dom';

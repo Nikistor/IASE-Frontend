@@ -110,6 +110,36 @@ export function useRequisition() {
 		})
 	}
 
+	const handleDownloadReport = async (id) => {
+        try {
+            const response = await api.get(`requisitions/${id}/download_report/`, {
+                headers: {
+                    Authorization: access_token,
+                },
+                responseType: 'blob' // Указываем тип ответа как blob
+            });
+
+            if (!response.data) {
+                throw new Error("Ошибка при скачивании");
+            }
+
+            const contentType = response.headers['content-type'];
+            if (!contentType || !contentType.includes('application/pdf')) {
+                throw new Error("Неверный формат файла");
+            }
+
+            const url = window.URL.createObjectURL(response.data);
+            const link = document.createElement("a");
+            link.href = url;
+            link.download = `report_${id}.pdf`;
+            link.click();
+            window.URL.revokeObjectURL(url);
+        } catch (error) {
+            alert("Ошибка при скачивании отчета");
+            console.error(error);
+        }
+    };
+
 	return {
 		requisition,
 		requisition_id,
@@ -124,6 +154,7 @@ export function useRequisition() {
 		deleteRequisition,
 		fetchRequisition,
 		addCompanyToRequisition,
-		deleteCompanyFromRequisition
+		deleteCompanyFromRequisition,
+		handleDownloadReport
 	};
 }

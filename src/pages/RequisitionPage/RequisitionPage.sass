@@ -1,4 +1,4 @@
-@import "src/Styles/variables.sass"
+@import "src/styles/variables.sass"
 
 .requisition-page-wrapper
 	width: 100%
@@ -54,3 +54,29 @@
 			padding: 8px 16px
 			font-size: 28px
 
+	.upload-report-button
+		display: inline-block
+		cursor: pointer
+		background-color: $primary
+		color: #fff
+		font-size: 18px
+		padding: 10px 20px
+		border-radius: 8px
+		text-align: center
+		transition: background-color 0.3s ease
+		box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1)
+
+		&:hover
+			background-color: darken($primary, 10%)
+
+		&:active
+			background-color: darken($primary, 15%)
+
+	.uploaded-report-info
+		margin-top: 20px
+		font-size: 18px
+		color: #2e7d32
+		background-color: #e8f5e9
+		padding: 10px 15px
+		border-radius: 8px
+		border: 1px solid #c8e6c9

@@ -1,28 +1,29 @@
 import React from "react";
 import "./RequisitionsTable.sass"
-import {STATUSES, variables} from "/src/utils/consts";
-import {ru} from "/src/utils/momentLocalization";
+import { STATUSES, variables } from "/src/utils/consts";
+import { ru } from "/src/utils/momentLocalization";
 import moment from "moment";
-import {useQuery} from "react-query";
-import {useRequisitions} from "../../../hooks/requisitions/useRequisitions";
-import {useCustomTable} from "../../../hooks/other/useCustomTable";
+import { useQuery } from "react-query";
+import { useRequisitions } from "../../../hooks/requisitions/useRequisitions";
+import { useCustomTable } from "../../../hooks/other/useCustomTable";
 import CustomTable from "../../../components/CustomTable/CustomTable";
-import {useNavigate} from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import RequisitionsFilters from "../RequisitionsFilters/RequisitionsFilters";
 import CustomButton from "../../../components/CustomButton/CustomButton";
-import {useAuth} from "../../../hooks/users/useAuth";
-import {api} from "../../../utils/api";
-import {useToken} from "../../../hooks/users/useToken";
+import ReportDownloadButton from '../../../components/ReportDownloadButton/ReportDownloadButton';
+import { useAuth } from "../../../hooks/users/useAuth";
+import { api } from "../../../utils/api";
+import { useToken } from "../../../hooks/users/useToken";
 
 const RequisitionsTable = () => {
 
-    const {access_token} = useToken()
-    
-    const {is_moderator} = useAuth()
+    const { access_token } = useToken()
+
+    const { is_moderator } = useAuth()
 
     const navigate = useNavigate()
 
-    const {searchRequisitions} = useRequisitions()
+    const { searchRequisitions } = useRequisitions()
 
     const columns = [
         {
@@ -51,19 +52,9 @@ const RequisitionsTable = () => {
         },
         {
             Header: "Отчет",
-            accessor: "report_url", 
-            Cell: ({ value }) => {
-                if (value) {
-                    // Если есть отчет, создаем кнопку для скачивания
-                    return (
-                        <a href={value} target="_blank" rel="noopener noreferrer" className="download-report-button">
-                            Скачать
-                        </a>
-                    );
-                }
-        
-                // Если отчета нет
-                return <span className="no-report">Нет отчета</span>;
+            accessor: "report_url",
+            Cell: ({ row }) => {
+                return <ReportDownloadButton row={row} />;
             }
         }
     ]
@@ -157,7 +148,7 @@ const RequisitionsTable = () => {
                 isLoading={isLoading}
                 onClick={handleClick}
             >
-                <RequisitionsFilters refetch={refetch}/>
+                <RequisitionsFilters refetch={refetch} />
             </CustomTable>
 
         </div>

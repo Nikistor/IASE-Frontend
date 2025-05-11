@@ -21,6 +21,7 @@ const RequisitionPage = () => {
 
     const { id } = useParams<{ id: string }>();
     const [reportFile, setReportFile] = useState<File | null>(null); // Состояние для хранения файла
+    const [uploadedReportName, setUploadedReportName] = useState<string | null>(null);
 
     const { requisition, name, setName, fetchRequisition, saveRequisition, sendRequisition, deleteRequisition, setRequisition } = useRequisition()
 
@@ -71,8 +72,10 @@ const RequisitionPage = () => {
             });
 
             if (response.status === 200) {
-                alert("Отчет успешно загружен!");
+                // alert("Отчет успешно загружен!");
+                setUploadedReportName(reportFile.name); // Сохраняем имя отчета
                 setReportFile(null); // Очищаем выбранный файл
+                fetchRequisition(id); // Обновляем данные заявки с сервера
             }
         } catch (error) {
             console.error("Ошибка при загрузке отчета:", error);
@@ -150,21 +153,25 @@ const RequisitionPage = () => {
 
             {is_moderator && requisition.status == 2 &&
                 <>
-                    <label className="upload-button">
+                    <label className="upload-report-button">
                         <input
                             type="file"
                             accept=".pdf"
                             style={{ display: "none" }}
                             onChange={(e) => setReportFile(e.target.files?.[0] || null)}
                         />
-                        Загрузить отчет
+                        📎 Загрузить отчет
                     </label>
-                    <CustomButton onClick={onUploadReport} bg={variables.blue}>
+                    {uploadedReportName && (
+                        <div className="uploaded-report-info">
+                            ✅ Загруженный отчет: <strong>{uploadedReportName}</strong>
+                        </div>
+                    )}
+                    <CustomButton onClick={onUploadReport} bg={variables.primary}>
                         Обновить с отчетом
                     </CustomButton>
                 </>
             }
-
         </div>
     )
 }
