@@ -2,7 +2,7 @@ import "./CompanyCard.sass"
 import {Company} from "../../utils/types";
 import {Link} from "react-router-dom";
 import {useAuth} from "../../hooks/users/useAuth";
-import {useVacancy} from "../../hooks/vacancies/useVacancy";
+import {useRequisition} from "../../hooks/requisitions/useRequisition";
 import CustomButton from "../CustomButton/CustomButton";
 import {variables} from "../../utils/consts";
 import {useCompanies} from "../../hooks/companies/useCompanies";
@@ -11,17 +11,17 @@ const CompanyCard = ({ company }: {company:Company}) => {
     const {searchCompanies}=useCompanies()
     const {is_authenticated} = useAuth()
 
-    const {vacancy_id, is_draft, addCompanyToVacancy, deleteCompanyFromVacancy, fetchVacancy} = useVacancy()
+    const {requisition_id, is_draft, addCompanyToRequisition, deleteCompanyFromRequisition, fetchRequisition} = useRequisition()
 
     const handleAddCompany = async (e: any) => {
          e.preventDefault()
-        await addCompanyToVacancy(company)
+        await addCompanyToRequisition(company)
         await searchCompanies()
     }
 
     const handleDeleteCompany = async (e: any) => {
-        await deleteCompanyFromVacancy(company)
-        await fetchVacancy(vacancy_id)
+        await deleteCompanyFromRequisition(company)
+        await fetchRequisition(requisition_id)
     }
 
     // Формируем URL для изображения компании
@@ -54,7 +54,7 @@ const CompanyCard = ({ company }: {company:Company}) => {
                         <CustomButton onClick={handleAddCompany} bg={variables.green}>Добавить</CustomButton>
                     }
 
-                    {is_authenticated && is_draft && location.pathname.includes("vacancies") &&
+                    {is_authenticated && is_draft && location.pathname.includes("requisitions") &&
                         <CustomButton onClick={handleDeleteCompany} bg={variables.red}>Удалить</CustomButton>
                     }
 

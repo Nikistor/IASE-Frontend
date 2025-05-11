@@ -1,20 +1,20 @@
 import React from "react";
-import "./VacanciesTable.sass"
+import "./RequisitionsTable.sass"
 import {STATUSES, variables} from "/src/utils/consts";
 import {ru} from "/src/utils/momentLocalization";
 import moment from "moment";
 import {useQuery} from "react-query";
-import {useVacancies} from "../../../hooks/vacancies/useVacancies";
+import {useRequisitions} from "../../../hooks/requisitions/useRequisitions";
 import {useCustomTable} from "../../../hooks/other/useCustomTable";
 import CustomTable from "../../../components/CustomTable/CustomTable";
 import {useNavigate} from "react-router-dom"
-import VacanciesFilters from "../VacanciesFilters/VacanciesFilters";
+import RequisitionsFilters from "../RequisitionsFilters/RequisitionsFilters";
 import CustomButton from "../../../components/CustomButton/CustomButton";
 import {useAuth} from "../../../hooks/users/useAuth";
 import {api} from "../../../utils/api";
 import {useToken} from "../../../hooks/users/useToken";
 
-const VacanciesTable = () => {
+const RequisitionsTable = () => {
 
     const {access_token} = useToken()
     
@@ -22,7 +22,7 @@ const VacanciesTable = () => {
 
     const navigate = useNavigate()
 
-    const {searchVacancies} = useVacancies()
+    const {searchRequisitions} = useRequisitions()
 
     const columns = [
         {
@@ -73,7 +73,7 @@ const VacanciesTable = () => {
             Header: "Действие",
             accessor: "accept_button",
             Cell: ({ cell }) => (
-                is_moderator && cell.row.values.status == 2 && <CustomButton bg={variables.green} onClick={(e) => acceptVacancy(cell.row.values.id)}>Отправить</CustomButton>
+                is_moderator && cell.row.values.status == 2 && <CustomButton bg={variables.green} onClick={(e) => acceptRequisition(cell.row.values.id)}>Отправить</CustomButton>
             )
         })
 
@@ -81,18 +81,18 @@ const VacanciesTable = () => {
             Header: "Действие",
             accessor: "dismiss_button",
             Cell: ({ cell }) => (
-                is_moderator && cell.row.values.status == 2 && <CustomButton bg={variables.red} onClick={(e) => dismissVacancy(cell.row.values.id)}>Отклонить</CustomButton>
+                is_moderator && cell.row.values.status == 2 && <CustomButton bg={variables.red} onClick={(e) => dismissRequisition(cell.row.values.id)}>Отклонить</CustomButton>
             )
         })
     }
 
-    const acceptVacancy = async (order_id) => {
+    const acceptRequisition = async (order_id) => {
 
         const formData = new FormData()
 
         formData.append("status", "3")
 
-        const response = await api.put(`vacancies/${order_id}/update_status_admin/`, formData, {
+        const response = await api.put(`requisitions/${order_id}/update_status_admin/`, formData, {
             headers: {
                 'authorization': access_token
             }
@@ -103,13 +103,13 @@ const VacanciesTable = () => {
         }
     }
 
-    const dismissVacancy = async (order_id) => {
+    const dismissRequisition = async (order_id) => {
 
         const formData = new FormData()
 
         formData.append("status", "4")
 
-        const response = await api.put(`vacancies/${order_id}/update_status_admin/`, formData, {
+        const response = await api.put(`requisitions/${order_id}/update_status_admin/`, formData, {
             headers: {
                 'authorization': access_token
             }
@@ -121,8 +121,8 @@ const VacanciesTable = () => {
     }
 
     const { isLoading, data, isSuccess, refetch } = useQuery(
-        ["vacancies"],
-        () => searchVacancies(),
+        ["requisitions"],
+        () => searchRequisitions(),
         {
             refetchInterval: 2000,
             refetchOnWindowFocus: false,
@@ -142,8 +142,8 @@ const VacanciesTable = () => {
         data
     )
 
-    const handleClick = (vacancy_id) => {
-        navigate(`/vacancies/${vacancy_id}`)
+    const handleClick = (requisition_id) => {
+        navigate(`/requisitions/${requisition_id}`)
     }
 
     return (
@@ -157,11 +157,11 @@ const VacanciesTable = () => {
                 isLoading={isLoading}
                 onClick={handleClick}
             >
-                <VacanciesFilters refetch={refetch}/>
+                <RequisitionsFilters refetch={refetch}/>
             </CustomTable>
 
         </div>
     )
 }
 
-export default VacanciesTable
+export default RequisitionsTable

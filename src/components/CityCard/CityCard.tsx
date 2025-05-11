@@ -2,7 +2,7 @@ import "./CityCard.sass"
 import {City} from "../../utils/types";
 import {Link} from "react-router-dom";
 import {useAuth} from "../../hooks/users/useAuth";
-import {useVacancy} from "../../hooks/vacancies/useVacancy";
+import {useRequisition} from "../../hooks/requisitions/useRequisition";
 import CustomButton from "../CustomButton/CustomButton";
 import {variables} from "../../utils/consts";
 import {useCities} from "../../hooks/cities/useCities";
@@ -11,17 +11,17 @@ const CityCard = ({ city }: {city:City}) => {
     const {searchCities}=useCities()
     const {is_authenticated} = useAuth()
 
-    const {vacancy_id, is_draft, addCityToVacancy, deleteCityFromVacancy, fetchVacancy} = useVacancy()
+    const {requisition_id, is_draft, addCityToRequisition, deleteCityFromRequisition, fetchRequisition} = useRequisition()
 
     const handleAddCity = async (e) => {
          e.preventDefault()
-        await addCityToVacancy(city)
+        await addCityToRequisition(city)
         await searchCities()
     }
 
     const handleDeleteCity = async (e) => {
-        await deleteCityFromVacancy(city)
-        await fetchVacancy(vacancy_id)
+        await deleteCityFromRequisition(city)
+        await fetchRequisition(requisition_id)
     }
 
     return (
@@ -51,7 +51,7 @@ const CityCard = ({ city }: {city:City}) => {
                         <CustomButton onClick={handleAddCity} bg={variables.green}>Добавить</CustomButton>
                     }
 
-                    {is_authenticated && is_draft && location.pathname.includes("vacancies") &&
+                    {is_authenticated && is_draft && location.pathname.includes("requisitions") &&
                         <CustomButton onClick={handleDeleteCity} bg={variables.red}>Удалить</CustomButton>
                     }
 

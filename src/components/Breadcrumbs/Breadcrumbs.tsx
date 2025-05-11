@@ -3,7 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import {FaChevronRight} from "react-icons/fa6";
 import {FaHome} from "react-icons/fa";
 import {useCompany} from "../../hooks/companies/useCompany";
-import {useVacancy} from "../../hooks/vacancies/useVacancy";
+import {useRequisition} from "../../hooks/requisitions/useRequisition";
 
 const Breadcrumbs = () => {
 
@@ -11,7 +11,7 @@ const Breadcrumbs = () => {
 
     const {company, setCompany} = useCompany()
 
-    const { vacancy } = useVacancy()
+    const { requisition } = useRequisition()
 
     let currentLink = ''
 
@@ -19,7 +19,7 @@ const Breadcrumbs = () => {
 
     const topics = {
         "companies": "Компании",
-        "vacancies": "Заявки",
+        "requisitions": "Заявки",
         "home": "Главная",
         "login": "Вход",
         "register": "Регистрация",
@@ -50,13 +50,13 @@ const Breadcrumbs = () => {
             )
         }
 
-        if (currentLink.match(new RegExp('vacancies/(\d*)')))
+        if (currentLink.match(new RegExp('requisitions/(\d*)')))
         {
             return (
                 <div className={"crumb"} key={crumb}>
 
                     <Link to={currentLink}>
-                        {vacancy?.name}
+                        {requisition?.name}
                     </Link>
 
                     <FaChevronRight className={"chevron-icon"}/>

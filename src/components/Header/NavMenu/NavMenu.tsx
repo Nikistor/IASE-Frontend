@@ -21,7 +21,7 @@ const NavMenu = () => {
                     <>
                         {/* Новая кнопка для анализа данных компании */}
                         <a href="http://localhost:8501" target="_blank" rel="noopener noreferrer" className="menu-item" onClick={(e) => { setIsOpen(false) }} >
-                            <span>Анализ данных</span>
+                            <span>Аналитический блок</span>
                         </a>
 
                         <Link to="/companies_table" className="menu-item" onClick={(e) => { setIsOpen(false) }} >
@@ -34,7 +34,7 @@ const NavMenu = () => {
                 </Link>
 
                 {is_authenticated &&
-                    <Link to="/vacancies" className="menu-item" onClick={(e) => { setIsOpen(false) }} >
+                    <Link to="/requisitions" className="menu-item" onClick={(e) => { setIsOpen(false) }} >
                         <span>Заявки</span>
                     </Link>
                 }

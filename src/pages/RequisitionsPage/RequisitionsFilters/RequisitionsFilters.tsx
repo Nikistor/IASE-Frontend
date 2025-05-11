@@ -1,17 +1,17 @@
-import "./VacanciesFilters.sass"
+import "./RequisitionsFilters.sass"
 import DropdownMenu from "../../../components/DropdownMenu/DropdownMenu";
 import {ADMIN_STATUSES, USER_STATUSES, variables} from "../../../utils/consts";
 import {useAuth} from "../../../hooks/users/useAuth";
-import {useVacancies} from "../../../hooks/vacancies/useVacancies";
+import {useRequisitions} from "../../../hooks/requisitions/useRequisitions";
 import CustomDatePicker from "../../../components/CustomDatePicker/CustomDatePicker";
 import CustomButton from "../../../components/CustomButton/CustomButton";
 import SearchBar from "../../../components/SearchBar/SearchBar";
 
-const VacanciesFilters = ({refetch}) => {
+const RequisitionsFilters = ({refetch}) => {
 
     const {is_moderator} = useAuth()
 
-    const {status, setStatus, date_start, setDateStart, date_end, setDateEnd, user, setUser} = useVacancies()
+    const {status, setStatus, date_start, setDateStart, date_end, setDateEnd, user, setUser} = useRequisitions()
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -54,4 +54,4 @@ const VacanciesFilters = ({refetch}) => {
     )
 }
 
-export default VacanciesFilters
+export default RequisitionsFilters

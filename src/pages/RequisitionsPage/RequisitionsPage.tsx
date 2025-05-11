@@ -1,9 +1,9 @@
-import VacanciesTable from "./VacanciesTable/VacanciesTable";
+import RequisitionsTable from "./RequisitionsTable/RequisitionsTable";
 import {useAuth} from "../../hooks/users/useAuth";
 import {useEffect} from "react";
 import {useNavigate} from "react-router-dom"
 
-const VacanciesPage = () => {    
+const RequisitionsPage = () => {    
 
     const {is_authenticated} = useAuth()
 
@@ -17,10 +17,10 @@ const VacanciesPage = () => {
 
     return (
         <div>
-            <VacanciesTable />
+            <RequisitionsTable />
         </div>
     )
 }
 
-export default VacanciesPage;
+export default RequisitionsPage;
 

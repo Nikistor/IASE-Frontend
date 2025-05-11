@@ -7,8 +7,8 @@ const initialState= {
 	user: ""
 };
 
-const vacanciesSlice = createSlice({
-	name: 'vacancies',
+const requisitionsSlice = createSlice({
+	name: 'requisitions',
 	initialState: initialState,
 	reducers: {
 		updateStatus(state, action) {
@@ -26,6 +26,6 @@ const vacanciesSlice = createSlice({
 	}
 })
 
-export const {updateStatus, updateDateStart, updateDateEnd, updateUser} = vacanciesSlice.actions;
+export const {updateStatus, updateDateStart, updateDateEnd, updateUser} = requisitionsSlice.actions;
 
-export default vacanciesSlice.reducer;
+export default requisitionsSlice.reducer;

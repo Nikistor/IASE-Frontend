@@ -4,7 +4,7 @@ import {
 	updateQuery
 } from "../../store/companies/companiesSlice";
 import { api } from "../../utils/api";
-import { useVacancy } from "../vacancies/useVacancy";
+import { useRequisition } from "../requisitions/useRequisition";
 import { useToken } from "../users/useToken";
 
 export function useCompanies() {
@@ -13,7 +13,7 @@ export function useCompanies() {
 
 	const { access_token } = useToken()
 
-	const { setVacancyId, setVacancy } = useVacancy()
+	const { setRequisitionId, setRequisition } = useRequisition()
 
 	const dispatch = useDispatch()
 
@@ -36,11 +36,11 @@ export function useCompanies() {
 			}
 		})
 
-		const draft_vacancy_id = data["draft_vacancy_id"]
-		setVacancyId(draft_vacancy_id)
+		const draft_requisition_id = data["draft_requisition_id"]
+		setRequisitionId(draft_requisition_id)
 
-		if (!draft_vacancy_id) {
-			setVacancy(undefined)
+		if (!draft_requisition_id) {
+			setRequisition(undefined)
 		}
 
 		return data["companies"]

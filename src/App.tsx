@@ -12,9 +12,9 @@ import CompaniesPage from "./pages/CompaniesPage/CompaniesPage";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import RegisterPage from "./pages/RegisterPage/RegisterPage";
 import {useAuth} from "./hooks/users/useAuth";
-import VacancyConstructor from "./components/VacancyConstructor/VacancyConstructor";
-import VacancyPage from "./pages/VacancyPage/VacancyPage";
-import VacanciesPage from "./pages/VacanciesPage/VacanciesPage";
+import RequisitionConstructor from "./components/RequisitionConstructor/RequisitionConstructor";
+import RequisitionPage from "./pages/RequisitionPage/RequisitionPage";
+import RequisitionsPage from "./pages/RequisitionsPage/RequisitionsPage";
 import CompanyEditPage from "./pages/CompanyEditPage/CompanyEditPage";
 import CompanyAddPage from "./pages/CompanyAddPage/CompanyAddPage";
 import CompaniesTableWrapper from "./pages/CompaniesPage/CompaniesTableWrapper/CompaniesTableWrapper";
@@ -29,7 +29,7 @@ const TopPanelWrapper = () => {
     return (
         <div className="top-panel-wrapper">
             <Breadcrumbs />
-            {is_authenticated && location.pathname.endsWith("companies") && <VacancyConstructor /> }
+            {is_authenticated && location.pathname.endsWith("companies") && <RequisitionConstructor /> }
         </div>
     )
 }
@@ -72,9 +72,9 @@ function App() {
 
                                     <Route path="/profile" element={<ProfilePage />} />
 
-                                    <Route path="/vacancies/:id" element={<VacancyPage />} />
+                                    <Route path="/requisitions/:id" element={<RequisitionPage />} />
 
-                                    <Route path="/vacancies" element={<VacanciesPage />} />
+                                    <Route path="/requisitions" element={<RequisitionsPage />} />
 
                                     <Route path="/login" element={<LoginPage />} />
 

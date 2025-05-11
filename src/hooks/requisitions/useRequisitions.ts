@@ -4,15 +4,15 @@ import {
 	updateDateStart,
 	updateDateEnd,
 	updateUser
-} from "../../store/vacancies/vacanciesSlice";
+} from "../../store/requisitions/requisitionsSlice";
 import {api} from "../../utils/api";
 import {useToken} from "../users/useToken";
 
-export function useVacancies() {
-	const status = useSelector(state => state.vacancies.status)
-	const date_start = useSelector(state => state.vacancies.date_start)
-	const date_end = useSelector(state => state.vacancies.date_end)
-	const user = useSelector(state => state.vacancies.user)
+export function useRequisitions() {
+	const status = useSelector(state => state.requisitions.status)
+	const date_start = useSelector(state => state.requisitions.date_start)
+	const date_end = useSelector(state => state.requisitions.date_end)
+	const user = useSelector(state => state.requisitions.user)
 
 	const dispatch = useDispatch()
 
@@ -34,9 +34,9 @@ export function useVacancies() {
 		dispatch(updateUser(value))
 	}
 
-	const searchVacancies = async () => {
+	const searchRequisitions = async () => {
 
-		const {data} = await api.get(`vacancies/search/`, {
+		const {data} = await api.get(`requisitions/search/`, {
 			params: {
 				status: status,
 				date_start: new Date(date_start),
@@ -47,7 +47,7 @@ export function useVacancies() {
 			}
 		})
 
-		return data.filter(vacancy => vacancy.employer.name.includes(user))
+		return data.filter(requisition => requisition.employer.name.includes(user))
 
 	}
 
@@ -57,7 +57,7 @@ export function useVacancies() {
 		date_start,
 		date_end,
 		setStatus,
-		searchVacancies,
+		searchRequisitions,
 		setDateStart,
 		setDateEnd,
 		setUser

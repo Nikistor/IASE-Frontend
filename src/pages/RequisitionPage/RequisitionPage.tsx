@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import { useVacancy } from "../../hooks/vacancies/useVacancy";
+import { useRequisition } from "../../hooks/requisitions/useRequisition";
 import { useNavigate, useParams } from "react-router-dom"
 import CompanyCard from "../../components/CompanyCard/CompanyCard";
-import "./VacancyPage.sass"
+import "./RequisitionPage.sass"
 import { useAuth } from "../../hooks/users/useAuth";
 import { STATUSES, variables } from "../../utils/consts";
 import { ru } from "../../utils/momentLocalization";
@@ -12,7 +12,7 @@ import CustomInput from "../../components/CustomInput/CustomInput";
 import { useToken } from "../../hooks/users/useToken";
 import { api } from "../../utils/api";
 
-const VacancyPage = () => {
+const RequisitionPage = () => {
 
     const { is_moderator } = useAuth()
 
@@ -22,32 +22,32 @@ const VacancyPage = () => {
     const { id } = useParams<{ id: string }>();
     const [reportFile, setReportFile] = useState<File | null>(null); // Состояние для хранения файла
 
-    const { vacancy, name, setName, fetchVacancy, saveVacancy, sendVacancy, deleteVacancy, setVacancy } = useVacancy()
+    const { requisition, name, setName, fetchRequisition, saveRequisition, sendRequisition, deleteRequisition, setRequisition } = useRequisition()
 
     useEffect(() => {
-        id && fetchVacancy(id)
+        id && fetchRequisition(id)
 
         return () => {
-            setVacancy(undefined)
+            setRequisition(undefined)
             setName("")
         };
     }, [])
 
-    if (id == undefined || vacancy == undefined) {
+    if (id == undefined || requisition == undefined) {
         return (
-            <div className="vacancy-page-wrapper">
+            <div className="requisition-page-wrapper">
                 <h1>Пусто</h1>
             </div>
         )
     }
 
-    const onSendVacancy = async () => {
-        await sendVacancy()
-        navigate("/vacancies")
+    const onSendRequisition = async () => {
+        await sendRequisition()
+        navigate("/requisitions")
     }
 
-    const onDeleteVacancy = async () => {
-        await deleteVacancy()
+    const onDeleteRequisition = async () => {
+        await deleteRequisition()
         navigate("/companies")
     }
 
@@ -63,7 +63,7 @@ const VacancyPage = () => {
         form_data.append("report", reportFile, reportFile.name);
 
         try {
-            const response = await api.patch(`vacancies/${vacancy.id}/update/`, form_data, {
+            const response = await api.patch(`requisitions/${requisition.id}/update/`, form_data, {
                 headers: {
                     "content-type": "multipart/form-data",
                     authorization: access_token,
@@ -80,7 +80,7 @@ const VacancyPage = () => {
         }
     };
 
-    const cards = vacancy.companies.map(company => (
+    const cards = requisition.companies.map(company => (
         <CompanyCard company={company} key={company.id} />
     ))
 
@@ -88,25 +88,25 @@ const VacancyPage = () => {
         return (
             <div className="buttons-wrapper">
 
-                {/*<CustomButton onClick={saveVacancy} bg={variables.green}>Сохранить</CustomButton>*/}
+                {/*<CustomButton onClick={saveRequisition} bg={variables.green}>Сохранить</CustomButton>*/}
 
-                <CustomButton onClick={onSendVacancy} bg={variables.primary}>Отправить</CustomButton>
+                <CustomButton onClick={onSendRequisition} bg={variables.primary}>Отправить</CustomButton>
 
-                <CustomButton onClick={onDeleteVacancy} bg={variables.red}>Удалить</CustomButton>
+                <CustomButton onClick={onDeleteRequisition} bg={variables.red}>Удалить</CustomButton>
 
             </div>
         )
     }
 
-    const is_draft = vacancy.status == 1
+    const is_draft = requisition.status == 1
 
-    const completed = [3, 4].includes(vacancy.status)
+    const completed = [3, 4].includes(requisition.status)
 
     const bankrupt = () => {
-        if (vacancy.bankrupt == -1) {
+        if (requisition.bankrupt == -1) {
             return "Не найден"
         }
-        else if (vacancy.bankrupt == 0) {
+        else if (requisition.bankrupt == 0) {
             return "Нет"
         }
 
@@ -114,19 +114,19 @@ const VacancyPage = () => {
     }
 
     return (
-        <div className="vacancy-page-wrapper">
+        <div className="requisition-page-wrapper">
 
-            <div className="vacancy-companies-wrapper">
+            <div className="requisition-companies-wrapper">
                 <div className="top">
-                    <h3>{is_draft ? "Новая заявка" : vacancy.name}</h3>
+                    <h3>{is_draft ? "Новая заявка" : requisition.name}</h3>
                 </div>
 
-                <div className="vacancy-info-container">
-                    <span>Статус: {STATUSES.find(status => status.id == vacancy.status).name}</span>
-                    <span>Дата создания: {moment(vacancy.date_created).locale(ru()).format("D MMMM HH:mm")}</span>
-                    {[2, 3, 4].includes(vacancy.status) && <span>Дата формирования: {moment(vacancy.date_formation).locale(ru()).format("D MMMM HH:mm")}</span>}
-                    {completed && <span>Дата завершения: {moment(vacancy.date_complete).locale(ru()).format("D MMMM HH:mm")}</span>}
-                    {is_moderator && <span>Пользователь: {vacancy.employer.name}</span>}
+                <div className="requisition-info-container">
+                    <span>Статус: {STATUSES.find(status => status.id == requisition.status).name}</span>
+                    <span>Дата создания: {moment(requisition.date_created).locale(ru()).format("D MMMM HH:mm")}</span>
+                    {[2, 3, 4].includes(requisition.status) && <span>Дата формирования: {moment(requisition.date_formation).locale(ru()).format("D MMMM HH:mm")}</span>}
+                    {completed && <span>Дата завершения: {moment(requisition.date_complete).locale(ru()).format("D MMMM HH:mm")}</span>}
+                    {is_moderator && <span>Пользователь: {requisition.employer.name}</span>}
                     {completed && <span>Банкрот: {bankrupt()}</span>}
                 </div>
 
@@ -148,7 +148,7 @@ const VacancyPage = () => {
 
             {is_draft && <ButtonsContainer />}
 
-            {is_moderator && vacancy.status == 2 &&
+            {is_moderator && requisition.status == 2 &&
                 <>
                     <label className="upload-button">
                         <input
@@ -169,4 +169,4 @@ const VacancyPage = () => {
     )
 }
 
-export default VacancyPage
+export default RequisitionPage
