@@ -11,37 +11,38 @@ const ReportDownloadButton = ({ row }) => {
     const status = row.values.status;
     const id = row.original.id;
     const report = row.original.report;
-    // console.log(report)
 
     const handleClick = async () => {
         setLoading(true);
-        setError(null);  // Очистим предыдущие ошибки
+        setError(null);
 
         try {
-            await handleDownloadReport(id); // Выполняем скачивание отчета
+            await handleDownloadReport(id);
         } catch (err) {
-            setError("Ошибка при скачивании отчета");  // Обработка ошибки
+            setError("Ошибка при скачивании отчета");
         } finally {
-            setLoading(false);  // Завершаем процесс загрузки
+            setLoading(false);
         }
     };
 
-    if (status !== 3 || !report) {
-        return <span className="no-report">Нет отчета</span>;
+    if (status !== 3 && report) {
+        return (
+            <div>
+                <button
+                    onClick={handleClick}
+                    disabled={loading}
+                    className="download-report-button"
+                >
+                    {loading ? 'Загрузка...' : 'Скачать'}
+                </button>
+                {error && <p className="error-message">{error}</p>}
+            </div>
+        );
     }
 
-    return (
-        <div>
-            <button
-                onClick={handleClick}
-                disabled={loading}
-                className="download-report-button"
-            >
-                {loading ? 'Загрузка...' : 'Скачать'}
-            </button>
-            {error && <p className="error-message">{error}</p>}
-        </div>
-    );
+    if (status === 3 || !report) {
+        return <span className="no-report">Нет отчета</span>;
+    }
 };
 
 export default ReportDownloadButton;

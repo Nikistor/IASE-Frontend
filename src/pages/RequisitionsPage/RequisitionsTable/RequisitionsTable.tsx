@@ -63,9 +63,18 @@ const RequisitionsTable = () => {
         columns.push({
             Header: "Действие",
             accessor: "accept_button",
-            Cell: ({ cell }) => (
-                is_moderator && cell.row.values.status == 2 && <CustomButton bg={variables.green} onClick={(e) => acceptRequisition(cell.row.values.id)}>Отправить</CustomButton>
-            )
+            Cell: ({ cell }) => {
+                const { status, report } = cell.row.original;
+                return (
+                    is_moderator && status === 2 && report !== null &&
+                    <CustomButton
+                        bg={variables.green}
+                        onClick={() => acceptRequisition(cell.row.values.id)}
+                    >
+                        Отправить
+                    </CustomButton>
+                );
+            }
         })
 
         columns.push({
