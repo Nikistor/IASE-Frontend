@@ -71,7 +71,7 @@ const Breadcrumbs = () => {
                 <div className={"crumb"} key={crumb}>
 
                     <Link to={currentLink}>
-                        Новый город
+                        Новая компания
                     </Link>
 
                     <FaChevronRight className={"chevron-icon"}/>
