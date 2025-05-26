@@ -126,7 +126,7 @@ const RequisitionPage = () => {
 
                 {is_draft && (
                     <>
-                        <span>По какому показателю хотите получить отчетность?</span>
+                        <span>По какому показателю компаний хотите получить отчетность?</span>
                         <textarea
                             placeholder="Комментарий"
                             value={requisition.comment || ""}
@@ -135,7 +135,7 @@ const RequisitionPage = () => {
                         />
 
                         <CustomButton onClick={() => onUpdateComment(requisition.id)} bg={variables.primary}>
-                            💾 Сохранить комментарий
+                            Сохранить комментарий
                         </CustomButton>
                     </>
                 )}
@@ -160,7 +160,7 @@ const RequisitionPage = () => {
                             style={{ display: "none" }}
                             onChange={(e) => setReportFile(e.target.files?.[0] || null)}
                         />
-                        📎 Загрузить отчет
+                        Загрузить отчет
                     </label>
                     {uploadedReportName && (
                         <div className="uploaded-report-info">
