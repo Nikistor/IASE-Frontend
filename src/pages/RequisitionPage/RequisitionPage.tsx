@@ -43,8 +43,15 @@ const RequisitionPage = () => {
     }
 
     const onSendRequisition = async () => {
-        await sendRequisition()
-        navigate("/requisitions")
+        // Сначала обновляем комментарий
+        if (requisition.comment !== undefined) {
+            await onUpdateComment(requisition.id);
+        }
+
+        // Затем отправляем заявку
+        await sendRequisition();
+        
+        navigate("/requisitions");
     }
 
     const onDeleteRequisition = async () => {
@@ -126,17 +133,14 @@ const RequisitionPage = () => {
 
                 {is_draft && (
                     <>
-                        <span>По какому показателю компаний хотите получить отчетность?</span>
-                        <textarea
-                            placeholder="Комментарий"
-                            value={requisition.comment || ""}
-                            onChange={(e) => setRequisition({ ...requisition, comment: e.target.value })}
-                            className="comment-textarea"
-                        />
-
-                        <CustomButton onClick={() => onUpdateComment(requisition.id)} bg={variables.primary}>
-                            Сохранить комментарий
-                        </CustomButton>
+                        <div className="comment-textarea-wrapper">
+                            <textarea
+                                placeholder="Комментарий"
+                                value={requisition.comment || ""}
+                                onChange={(e) => setRequisition({ ...requisition, comment: e.target.value })}
+                                className="comment-textarea"
+                            />
+                        </div>
                     </>
                 )}
 
