@@ -23,7 +23,7 @@ const RequisitionPage = () => {
     const [reportFile, setReportFile] = useState<File | null>(null); // Состояние для хранения файла
     const [uploadedReportName, setUploadedReportName] = useState<string | null>(null);
 
-    const { requisition, name, setName, fetchRequisition, saveRequisition, sendRequisition, deleteRequisition, setRequisition } = useRequisition()
+    const { requisition, name, setName, fetchRequisition, sendRequisition, deleteRequisition, setRequisition, onUpdateComment } = useRequisition()
 
     useEffect(() => {
         id && fetchRequisition(id)
@@ -60,7 +60,6 @@ const RequisitionPage = () => {
 
         let form_data = new FormData();
 
-        // Добавляем только поле report
         form_data.append("report", reportFile, reportFile.name);
 
         try {
@@ -72,10 +71,9 @@ const RequisitionPage = () => {
             });
 
             if (response.status === 200) {
-                // alert("Отчет успешно загружен!");
-                setUploadedReportName(reportFile.name); // Сохраняем имя отчета
-                setReportFile(null); // Очищаем выбранный файл
-                fetchRequisition(id); // Обновляем данные заявки с сервера
+                setUploadedReportName(reportFile.name);
+                setReportFile(null);
+                fetchRequisition(id);
             }
         } catch (error) {
             console.error("Ошибка при загрузке отчета:", error);
@@ -91,8 +89,6 @@ const RequisitionPage = () => {
         return (
             <div className="buttons-wrapper">
 
-                {/*<CustomButton onClick={saveRequisition} bg={variables.green}>Сохранить</CustomButton>*/}
-
                 <CustomButton onClick={onSendRequisition} bg={variables.primary}>Отправить</CustomButton>
 
                 <CustomButton onClick={onDeleteRequisition} bg={variables.red}>Удалить</CustomButton>
@@ -104,17 +100,6 @@ const RequisitionPage = () => {
     const is_draft = requisition.status == 1
 
     const completed = [3, 4].includes(requisition.status)
-
-    const bankrupt = () => {
-        if (requisition.bankrupt == -1) {
-            return "Не найден"
-        }
-        else if (requisition.bankrupt == 0) {
-            return "Нет"
-        }
-
-        return "Да"
-    }
 
     return (
         <div className="requisition-page-wrapper">
@@ -130,17 +115,32 @@ const RequisitionPage = () => {
                     {[2, 3, 4].includes(requisition.status) && <span>Дата формирования: {moment(requisition.date_formation).locale(ru()).format("D MMMM HH:mm")}</span>}
                     {completed && <span>Дата завершения: {moment(requisition.date_complete).locale(ru()).format("D MMMM HH:mm")}</span>}
                     {is_moderator && <span>Пользователь: {requisition.employer.name}</span>}
-                    {/*completed && <span>Банкрот: {bankrupt()}</span>*/}
+                    {!is_draft && requisition.comment && (<span>Комментарий: {requisition.comment}</span>)}
                 </div>
 
                 {is_draft &&
                     <div className="inputs-container">
-
                         <CustomInput placeholder={"Название заявки"} value={name} setValue={setName} />
-
                     </div>
                 }
 
+                {is_draft && (
+                    <>
+                        <span>По какому показателю хотите получить отчетность?</span>
+                        <textarea
+                            placeholder="Комментарий"
+                            value={requisition.comment || ""}
+                            onChange={(e) => setRequisition({ ...requisition, comment: e.target.value })}
+                            className="comment-textarea"
+                        />
+
+                        <CustomButton onClick={() => onUpdateComment(requisition.id)} bg={variables.primary}>
+                            💾 Сохранить комментарий
+                        </CustomButton>
+                    </>
+                )}
+
+          
 
                 <div className="bottom">
 
@@ -151,7 +151,7 @@ const RequisitionPage = () => {
 
             {is_draft && <ButtonsContainer />}
 
-            {is_moderator && requisition.status == 2 &&
+            {is_moderator && requisition.status == 2 && (
                 <>
                     <label className="upload-report-button">
                         <input
@@ -171,7 +171,7 @@ const RequisitionPage = () => {
                         Обновить с отчетом
                     </CustomButton>
                 </>
-            }
+            )}
         </div>
     )
 }

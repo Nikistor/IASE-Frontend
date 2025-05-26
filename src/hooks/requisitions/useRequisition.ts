@@ -140,6 +140,25 @@ export function useRequisition() {
         }
     };
 
+	const onUpdateComment = async (id: number) => {
+		try {
+			const response = await api.patch(`requisitions/${id}/update/`, {
+				comment: requisition.comment
+			}, {
+				headers: {
+					Authorization: access_token,
+				},
+			});
+
+			if (response.status === 200) {
+				fetchRequisition(id);
+			}
+		} catch (error) {
+			console.error("Ошибка при сохранении комментария:", error);
+			alert("Ошибка при сохранении комментария");
+		}
+	}
+
 	return {
 		requisition,
 		requisition_id,
@@ -155,6 +174,7 @@ export function useRequisition() {
 		fetchRequisition,
 		addCompanyToRequisition,
 		deleteCompanyFromRequisition,
-		handleDownloadReport
+		handleDownloadReport,
+		onUpdateComment
 	};
 }
